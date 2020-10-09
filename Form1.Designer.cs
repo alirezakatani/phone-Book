@@ -70,6 +70,7 @@
             this.textBoxname.Location = new System.Drawing.Point(212, 62);
             this.textBoxname.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxname.Name = "textBoxname";
+            this.textBoxname.ReadOnly = true;
             this.textBoxname.Size = new System.Drawing.Size(296, 30);
             this.textBoxname.TabIndex = 1;
             this.textBoxname.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -79,6 +80,7 @@
             this.textBoxphone.Location = new System.Drawing.Point(212, 191);
             this.textBoxphone.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxphone.Name = "textBoxphone";
+            this.textBoxphone.ReadOnly = true;
             this.textBoxphone.Size = new System.Drawing.Size(296, 30);
             this.textBoxphone.TabIndex = 5;
             this.textBoxphone.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
@@ -101,6 +103,7 @@
             this.textBoxaddress.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxaddress.Multiline = true;
             this.textBoxaddress.Name = "textBoxaddress";
+            this.textBoxaddress.ReadOnly = true;
             this.textBoxaddress.Size = new System.Drawing.Size(296, 142);
             this.textBoxaddress.TabIndex = 7;
             this.textBoxaddress.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
@@ -122,6 +125,7 @@
             this.textBoxfamily.Location = new System.Drawing.Point(212, 125);
             this.textBoxfamily.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textBoxfamily.Name = "textBoxfamily";
+            this.textBoxfamily.ReadOnly = true;
             this.textBoxfamily.Size = new System.Drawing.Size(296, 30);
             this.textBoxfamily.TabIndex = 9;
             this.textBoxfamily.TextChanged += new System.EventHandler(this.textBox5_TextChanged);
@@ -147,6 +151,7 @@
             this.btnnew.TabIndex = 10;
             this.btnnew.Text = "new";
             this.btnnew.UseVisualStyleBackColor = true;
+            this.btnnew.Click += new System.EventHandler(this.btnnew_Click);
             // 
             // btndel
             // 
@@ -158,6 +163,7 @@
             this.btndel.TabIndex = 12;
             this.btndel.Text = "del";
             this.btndel.UseVisualStyleBackColor = true;
+            this.btndel.Click += new System.EventHandler(this.btndel_Click);
             // 
             // btnedit
             // 
@@ -169,9 +175,11 @@
             this.btnedit.TabIndex = 13;
             this.btnedit.Text = "edit";
             this.btnedit.UseVisualStyleBackColor = true;
+            this.btnedit.Click += new System.EventHandler(this.btnedit_Click);
             // 
             // btnsave
             // 
+            this.btnsave.Enabled = false;
             this.btnsave.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(178)));
             this.btnsave.Location = new System.Drawing.Point(164, 469);
             this.btnsave.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
@@ -180,6 +188,7 @@
             this.btnsave.TabIndex = 14;
             this.btnsave.Text = "save";
             this.btnsave.UseVisualStyleBackColor = true;
+            this.btnsave.Click += new System.EventHandler(this.btnsave_Click);
             // 
             // btnprev
             // 
@@ -191,6 +200,7 @@
             this.btnprev.TabIndex = 18;
             this.btnprev.Text = "prev";
             this.btnprev.UseVisualStyleBackColor = true;
+            this.btnprev.Click += new System.EventHandler(this.btnprev_Click);
             // 
             // btnnext
             // 
@@ -202,6 +212,7 @@
             this.btnnext.TabIndex = 17;
             this.btnnext.Text = "next";
             this.btnnext.UseVisualStyleBackColor = true;
+            this.btnnext.Click += new System.EventHandler(this.btnnext_Click);
             // 
             // btnlast
             // 
@@ -213,6 +224,7 @@
             this.btnlast.TabIndex = 16;
             this.btnlast.Text = "last";
             this.btnlast.UseVisualStyleBackColor = true;
+            this.btnlast.Click += new System.EventHandler(this.btnlast_Click);
             // 
             // btnfirst
             // 
@@ -224,6 +236,7 @@
             this.btnfirst.TabIndex = 15;
             this.btnfirst.Text = "first";
             this.btnfirst.UseVisualStyleBackColor = true;
+            this.btnfirst.Click += new System.EventHandler(this.btnfirst_Click);
             // 
             // comboBoxsearched
             // 
@@ -285,7 +298,7 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(451, 303);
             this.dataGridView1.TabIndex = 24;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // Form1
             // 
