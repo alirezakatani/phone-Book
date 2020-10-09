@@ -19,6 +19,7 @@ namespace phone
         SqlDataAdapter da = new SqlDataAdapter();
         DataSet ds = new DataSet();
         CurrencyManager cr;
+        int beforcurrent;
         public Form1()
         {
             InitializeComponent();
@@ -112,22 +113,23 @@ namespace phone
 
         private void btnfirst_Click(object sender, EventArgs e)
         {
-            cr.Position = 0;
+            setcur(0);
         }
 
         private void btnnext_Click(object sender, EventArgs e)
         {
-            cr.Position++;
+            setcur(cr.Position+1);
         }
 
         private void btnprev_Click(object sender, EventArgs e)
         {
-            cr.Position--;
+            setcur(cr.Position-1);
+
         }
 
         private void btnlast_Click(object sender, EventArgs e)
         {
-            cr.Position = cr.Count;
+            setcur(cr.Count);
         }
 
         private void btnsave_Click(object sender, EventArgs e)
@@ -180,7 +182,9 @@ namespace phone
                 textBoxfamily.ReadOnly = false;
                 textBoxname.ReadOnly = false;
                 textBoxname.Focus();
+                   beforcurrent = cr.Position;
                 btnedit.Text = "apply";
+                
 
             }
             else
@@ -194,6 +198,7 @@ namespace phone
                 c3.Connection = conn;
                 c3.ExecuteNonQuery();
                 fillgred();
+                setcur(beforcurrent);
                 textBoxaddress.ReadOnly = true;
                 textBoxfamily.ReadOnly = true;
                 textBoxname.ReadOnly = true;
@@ -205,6 +210,33 @@ namespace phone
             
 
 
+        }
+
+        private void btnsearch_Click(object sender, EventArgs e)
+        {
+            string a;
+            if (textBoxsearchfor == null)
+                return;
+            a = "select * from tbltel where " + comboBoxsearched.Text + " like '" + textBoxsearchfor.Text + "%'";
+            fillgred(a);
+        }
+
+        private void textBoxsearchfor_TextChanged(object sender, EventArgs e)
+        {
+            btnsearch_Click(null, null);
+        }
+        void setcur(int cur)
+        {
+            if (cur > cr.Count || cur < 0)
+                return;
+            cr.Position = cur;
+            dataGridView1.CurrentCell = dataGridView1.Rows[cur].Cells[dataGridView1.CurrentCell.ColumnIndex];
+           
+        }
+
+        private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
+        {
+            setcur(dataGridView1.CurrentCell.RowIndex);
         }
     }
 }

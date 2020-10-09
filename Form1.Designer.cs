@@ -240,7 +240,13 @@
             // 
             // comboBoxsearched
             // 
+            this.comboBoxsearched.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxsearched.FormattingEnabled = true;
+            this.comboBoxsearched.Items.AddRange(new object[] {
+            "firstname",
+            "lastname",
+            "phoneno",
+            "address"});
             this.comboBoxsearched.Location = new System.Drawing.Point(904, 52);
             this.comboBoxsearched.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.comboBoxsearched.Name = "comboBoxsearched";
@@ -265,6 +271,7 @@
             this.textBoxsearchfor.Name = "textBoxsearchfor";
             this.textBoxsearchfor.Size = new System.Drawing.Size(276, 30);
             this.textBoxsearchfor.TabIndex = 22;
+            this.textBoxsearchfor.TextChanged += new System.EventHandler(this.textBoxsearchfor_TextChanged);
             // 
             // label6
             // 
@@ -287,6 +294,7 @@
             this.btnsearch.TabIndex = 23;
             this.btnsearch.Text = "search";
             this.btnsearch.UseVisualStyleBackColor = true;
+            this.btnsearch.Click += new System.EventHandler(this.btnsearch_Click);
             // 
             // dataGridView1
             // 
@@ -299,6 +307,7 @@
             this.dataGridView1.Size = new System.Drawing.Size(451, 303);
             this.dataGridView1.TabIndex = 24;
             this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
+            this.dataGridView1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dataGridView1_KeyUp);
             // 
             // Form1
             // 
