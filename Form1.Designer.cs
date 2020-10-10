@@ -317,7 +317,7 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.AppWorkspace;
             this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pictureBox1.Location = new System.Drawing.Point(549, 23);
+            this.pictureBox1.Location = new System.Drawing.Point(550, 23);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(163, 169);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -347,8 +347,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1170, 583);
-            this.Controls.Add(this.btnbrowse);
             this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.btnbrowse);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnsearch);
             this.Controls.Add(this.textBoxsearchfor);

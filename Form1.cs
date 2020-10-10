@@ -21,6 +21,7 @@ namespace phone
         DataSet ds = new DataSet();
         CurrencyManager cr;
         int beforcurrent;
+        Region x = new Region();
         public Form1()
         {
             InitializeComponent();
@@ -64,7 +65,7 @@ namespace phone
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            conn.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename =D:\C# LREARNING\FARADARS\APPS\PHONE\DATABASE1.MDF; Integrated Security = True";
+            conn.ConnectionString = @"Data Source = (LocalDB)\MSSQLLocalDB; AttachDbFilename ="+Application.StartupPath+@"\DATABASE1.MDF; Integrated Security = True";
             conn.Open();
             fillgred();
         }
@@ -260,7 +261,18 @@ namespace phone
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-
+            if(pictureBox1.SizeMode==PictureBoxSizeMode.StretchImage)
+            {
+                 x = pictureBox1.Region;
+                
+                pictureBox1.SizeMode = PictureBoxSizeMode.AutoSize;
+               
+            }
+            else
+            {
+                pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+                 x=pictureBox1.Region;
+            }
         }
 
         private string Copypic (string source,string key)
