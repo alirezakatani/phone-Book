@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data.Common;
+using System.IO;
 
 namespace phone
 {
@@ -84,6 +85,8 @@ namespace phone
             textBoxphone.DataBindings.Add("text", ds, "T1.phoneno");
             textBoxaddress.DataBindings.Clear();
             textBoxaddress.DataBindings.Add("text", ds, "T1.address");
+            pictureBox1.DataBindings.Clear();
+            pictureBox1.DataBindings.Add("imagelocation", ds, "T1.picurl");
             cr = (CurrencyManager)this.BindingContext[ds, "T1"];
 
 
@@ -104,6 +107,7 @@ namespace phone
             textBoxfamily.ReadOnly = false;
             textBoxname.ReadOnly = false;
             textBoxphone.ReadOnly= false;
+            btnbrowse.Enabled = true;
             textBoxphone.Text = "";
             textBoxfamily.Text = "";
             textBoxname.Text = "";
@@ -136,14 +140,16 @@ namespace phone
         {
             SqlCommand c1 = new SqlCommand();
             c1.Connection = conn;
-            c1.CommandText = "insert into tbltel values(@p1,@p2,@p3,@p4)";
+            c1.CommandText = "insert into tbltel values(@p1,@p2,@p3,@p4,@p5)";
             c1.Parameters.AddWithValue("p1", textBoxname.Text);
             c1.Parameters.AddWithValue("p2", textBoxfamily.Text);
             c1.Parameters.AddWithValue("p3", textBoxphone.Text);
             c1.Parameters.AddWithValue("p4", textBoxaddress.Text);
+            c1.Parameters.AddWithValue("p5", Copypic(pictureBox1.ImageLocation,textBoxphone.Text));
             c1.ExecuteNonQuery();
             btnnew.Enabled = true;
             btnsave.Enabled = false;
+            btnbrowse.Enabled = false;
             textBoxaddress.ReadOnly = true;
             textBoxfamily.ReadOnly = true;
             textBoxname.ReadOnly = true;
@@ -181,6 +187,7 @@ namespace phone
                 textBoxaddress.ReadOnly = false;
                 textBoxfamily.ReadOnly = false;
                 textBoxname.ReadOnly = false;
+                btnbrowse.Enabled = true;
                 textBoxname.Focus();
                    beforcurrent = cr.Position;
                 btnedit.Text = "apply";
@@ -190,11 +197,12 @@ namespace phone
             else
             {
                 SqlCommand c3 = new SqlCommand();
-                c3.CommandText = "update tbltel set firstname=@p1 , lastname=@p2 , address=@p3 where phoneno=@p4";
+                c3.CommandText = "update tbltel set firstname=@p1 , lastname=@p2 , address=@p3 , picurl=@p5 where phoneno=@p4";
                 c3.Parameters.AddWithValue("p1", textBoxname.Text);
                 c3.Parameters.AddWithValue("p2", textBoxfamily.Text);
                 c3.Parameters.AddWithValue("p4", textBoxphone.Text);
                 c3.Parameters.AddWithValue("p3", textBoxaddress.Text);
+                c3.Parameters.AddWithValue("p5", Copypic(pictureBox1.ImageLocation,textBoxphone.Text));
                 c3.Connection = conn;
                 c3.ExecuteNonQuery();
                 fillgred();
@@ -203,6 +211,7 @@ namespace phone
                 textBoxfamily.ReadOnly = true;
                 textBoxname.ReadOnly = true;
                 textBoxphone.ReadOnly = true;
+                btnbrowse.Enabled = false;
                 btnedit.Text = "edit";
 
 
@@ -237,6 +246,37 @@ namespace phone
         private void dataGridView1_KeyUp(object sender, KeyEventArgs e)
         {
             setcur(dataGridView1.CurrentCell.RowIndex);
+        }
+
+        private void btnbrowse_Click(object sender, EventArgs e)
+        {
+            DialogResult x;
+            x = openFileDialog1.ShowDialog();
+            if (x == DialogResult.Cancel)
+                return;
+            pictureBox1.ImageLocation = openFileDialog1.FileName;
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private string Copypic (string source,string key)
+        {
+            string curpath;
+            string newpath;
+            curpath = Application.StartupPath + @"\images";
+            if (Directory.Exists(curpath) == false)
+                Directory.CreateDirectory(curpath);
+            newpath = curpath + key + source.Substring(source.LastIndexOf("."));
+            if (File.Exists(newpath))
+                return "";
+             File.Copy(source, newpath);
+            return newpath;
+
+
         }
     }
 }
